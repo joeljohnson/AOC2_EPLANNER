@@ -23,6 +23,7 @@
     NSDate * eventDate;
     NSString * eventDescription;
     NSString * theEventDetails;
+    NSString * currentEvent;
     
 }
 

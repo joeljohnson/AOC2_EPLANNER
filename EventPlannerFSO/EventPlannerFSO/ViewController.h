@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EventDetailViewController.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <eventDetailsDelegate>
+{
+    NSString * currentEvent;
+    IBOutlet UITextView *eventList;
+}
 
 -(IBAction)addEvent:(id)sender;
 

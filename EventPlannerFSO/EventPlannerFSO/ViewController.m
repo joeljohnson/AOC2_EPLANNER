@@ -39,4 +39,19 @@
     
 }
 
+-(void)sendDetails:(NSString*)theEventDetails
+{
+    if (currentEvent != nil)
+    {
+        currentEvent = [currentEvent stringByAppendingString:theEventDetails];
+    }
+    else
+    {
+        currentEvent = [NSString stringWithFormat:@"%@" , theEventDetails];
+    }
+
+    eventList.text = theEventDetails;
+
+}
+
 @end

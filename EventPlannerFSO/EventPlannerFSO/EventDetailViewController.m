@@ -57,6 +57,7 @@
         
         theEventDetails = [NSString stringWithFormat:@"%@\n%@\n", eventDescription, eventDateFormatted];
         
+        [delegate sendDetails:theEventDetails];
         NSLog(@"%@", theEventDetails);
         
         [self dismissViewControllerAnimated:YES completion:nil];
