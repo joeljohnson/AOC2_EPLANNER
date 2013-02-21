@@ -32,6 +32,7 @@
 -(IBAction)addEvent:(id)sender
 {
     EventDetailViewController *eventDetailPage = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
+    eventDetailPage.delegate = self;
     if (eventDetailPage != nil)
     {
         [ self presentViewController:eventDetailPage animated:TRUE completion:nil];
@@ -50,7 +51,7 @@
         currentEvent = [NSString stringWithFormat:@"%@" , theEventDetails];
     }
 
-    eventList.text = theEventDetails;
+    eventList.text = currentEvent;
 
 }
 

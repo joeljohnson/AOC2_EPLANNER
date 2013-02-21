@@ -47,6 +47,7 @@
     {
         eventDate = selectedDate.date;
         eventDescription = eventName.text;
+        
         NSDateFormatter * eventDateFormat = [[NSDateFormatter alloc] init];
         if (eventDateFormat != nil)
         {
@@ -55,7 +56,7 @@
             NSLog(@"%@", eventDateFormatted);
         }
         
-        theEventDetails = [NSString stringWithFormat:@"%@\n%@\n", eventDescription, eventDateFormatted];
+        theEventDetails = [NSString stringWithFormat:@"%@\n%@\n\n", eventDescription, eventDateFormatted];
         
         [delegate sendDetails:theEventDetails];
         NSLog(@"%@", theEventDetails);
