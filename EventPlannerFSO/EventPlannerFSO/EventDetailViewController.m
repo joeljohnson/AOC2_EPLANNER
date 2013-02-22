@@ -40,6 +40,11 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(IBAction)closeTheKeyboard:(id)sender
+{
+    [eventName resignFirstResponder];
+}
+
 -(IBAction)onClick:(id)sender
 {
 
@@ -62,11 +67,6 @@
         NSLog(@"%@", theEventDetails);
         
         [self dismissViewControllerAnimated:YES completion:nil];
-    }
-    
-    else if (closeKeyboard.tag == 1)
-    {
-        //add close keyboard code.
     }
     
 }
