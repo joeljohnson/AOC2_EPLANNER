@@ -31,13 +31,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    NSDate *Date = [NSDate date];
+    selectedDate.minimumDate = Date;
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(IBAction)clearText:(id)sender
+{
+    eventName.text = nil;
 }
 
 -(IBAction)closeTheKeyboard:(id)sender
