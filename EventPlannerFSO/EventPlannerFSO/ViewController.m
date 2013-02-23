@@ -18,6 +18,10 @@
 
 - (void)viewDidLoad
 {
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSUserDomainMask, YES);
+    NSString *path = (NSString *)[paths objectAtIndex:0];
+    NSLog(@"%@",path);
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -30,6 +34,17 @@
     
 }
 
+-(void)viewDidAppear:(BOOL)animated
+{
+        NSUserDefaults *evenDetailList = [NSUserDefaults standardUserDefaults];
+        NSString *eList = [evenDetailList objectForKey:@"eld"];
+        if (eList != nil)
+            {
+                eventList.text = eList;
+            }
+    [super viewDidAppear:animated];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -39,7 +54,19 @@
 -(IBAction)saveEvents:(id)sender
 {
     //Add Save Code here.
-    NSLog(@"hit the Save Button, Not doing anhything yet.");
+    NSUserDefaults *eventDetailList = [NSUserDefaults standardUserDefaults];
+    
+    if (eventDetailList != nil) {
+        NSString *eList = eventList.text;
+        
+        [eventDetailList setObject:eList forKey:@"eld"];
+        
+        //save the list
+        [eventDetailList synchronize];
+        
+        
+    }
+    NSLog(@"hit the Save Button, Not doing anything yet.");
 }
 
 -(void)addEvent:(UISwipeGestureRecognizer*)recognizer
