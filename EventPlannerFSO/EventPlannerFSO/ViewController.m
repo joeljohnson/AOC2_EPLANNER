@@ -22,22 +22,40 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(addEvent:)];
+    rightSwipe.direction = UISwipeGestureRecognizerDirectionRight;
+    [swipeRightAddEvent addGestureRecognizer:rightSwipe];
+    
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-
--(IBAction)addEvent:(id)sender
+-(IBAction)saveEvents:(id)sender
 {
+    //Add Save Code here.
+    NSLog(@"hit the Save Button, Not doing anhything yet.");
+}
+
+-(void)addEvent:(UISwipeGestureRecognizer*)recognizer
+{
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        
+    
     EventDetailViewController *eventDetailPage = [[EventDetailViewController alloc] initWithNibName:@"EventDetailViewController" bundle:nil];
     eventDetailPage.delegate = self;
+        
     if (eventDetailPage != nil)
     {
         [ self presentViewController:eventDetailPage animated:TRUE completion:nil];
     }
-    
+   
+    }
 }
 
 -(void)sendDetails:(NSString*)theEventDetails

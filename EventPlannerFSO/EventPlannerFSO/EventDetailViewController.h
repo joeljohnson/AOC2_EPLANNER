@@ -16,20 +16,23 @@
 @interface EventDetailViewController : UIViewController <UITextFieldDelegate>
 {
     IBOutlet UITextField *eventName;
-    IBOutlet UIButton *saveBtn;
     IBOutlet UIButton *closeKeyboard;
     IBOutlet UIDatePicker *selectedDate;
+    IBOutlet UILabel *swipeLeftClose;
     NSString * eventDateFormatted;
     NSDate * eventDate;
     NSString * eventDescription;
     NSString * theEventDetails;
     NSString * currentEvent;
+    UISwipeGestureRecognizer *leftSwipeClose;
     
 }
 
 @property (nonatomic, strong) id<eventDetailsDelegate> delegate;
 
--(IBAction)onClick:(id)sender;
+-(IBAction)clearText:(id)sender;
+-(IBAction)closeTheKeyboard:(id)sender;
+
 
 
 @end

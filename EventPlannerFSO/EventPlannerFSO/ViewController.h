@@ -13,8 +13,11 @@
 {
     NSString * currentEvent;
     IBOutlet UITextView *eventList;
+    IBOutlet UILabel *swipeRightAddEvent;
+    UISwipeGestureRecognizer *rightSwipe;
+    
 }
 
--(IBAction)addEvent:(id)sender;
+-(IBAction)saveEvents:(id)sender;
 
 @end

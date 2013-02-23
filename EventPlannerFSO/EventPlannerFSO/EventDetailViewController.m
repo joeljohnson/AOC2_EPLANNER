@@ -34,6 +34,13 @@
     NSDate *Date = [NSDate date];
     selectedDate.minimumDate = Date;
 }
+-(void)viewWillAppear:(BOOL)animated
+{
+    leftSwipeClose = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeLeft:)];
+    leftSwipeClose.direction = UISwipeGestureRecognizerDirectionLeft;
+    [swipeLeftClose addGestureRecognizer:leftSwipeClose];
+    
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -41,21 +48,24 @@
     // Dispose of any resources that can be recreated.
 }
 
+//clear the event text field when tapped
 -(IBAction)clearText:(id)sender
 {
     eventName.text = nil;
 }
 
+//close teh keyboard
 -(IBAction)closeTheKeyboard:(id)sender
 {
     [eventName resignFirstResponder];
 }
 
--(IBAction)onClick:(id)sender
+//Capture Data and pass it back to the back to viewController
+-(void)onSwipeLeft:(UISwipeGestureRecognizer*)recognizer
 {
-
-    if (saveBtn.tag == 0)
+    if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft)
     {
+    
         eventDate = selectedDate.date;
         eventDescription = eventName.text;
         
@@ -64,17 +74,17 @@
         {
             [eventDateFormat setDateFormat:@"EEE, MMM d, yyyy @ hh:mm a"];
             eventDateFormatted = [eventDateFormat stringFromDate:eventDate];
-            NSLog(@"%@", eventDateFormatted);
+           // NSLog(@"%@", eventDateFormatted);
         }
         
         theEventDetails = [NSString stringWithFormat:@"%@\n%@\n\n", eventDescription, eventDateFormatted];
         
         [delegate sendDetails:theEventDetails];
-        NSLog(@"%@", theEventDetails);
+        //NSLog(@"%@", theEventDetails);
         
         [self dismissViewControllerAnimated:YES completion:nil];
-    }
     
+    }
 }
 
 @end
