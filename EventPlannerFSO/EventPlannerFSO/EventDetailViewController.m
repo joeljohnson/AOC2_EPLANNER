@@ -85,7 +85,7 @@
         //set the string to pass back
         theEventDetails = [NSString stringWithFormat:@"%@\n%@\n\n", eventDescription, eventDateFormatted];
         
-        //pass the string to the delegatte function
+        //pass the string to the delegate function
         [delegate sendDetails:theEventDetails];
         
         //dismiss the view

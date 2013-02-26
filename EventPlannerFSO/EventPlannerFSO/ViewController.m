@@ -68,6 +68,8 @@
         //save the list
         [eventDetailList synchronize];
         
+        UIAlertView *success = [[UIAlertView alloc] initWithTitle:@"Success!" message:@"Your list has been saved!" delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [success show];
         
     }
     NSLog(@"Hit the Save Button");
