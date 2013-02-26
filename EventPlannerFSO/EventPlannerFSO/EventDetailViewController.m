@@ -76,8 +76,18 @@
             eventDateFormatted = [eventDateFormat stringFromDate:eventDate];
            // NSLog(@"%@", eventDateFormatted);
         }
+        //NSUserDefaults *eventDetailList = [NSUserDefaults standardUserDefaults];
+        //NSString *eList = [eventDetailList objectForKey:@"eld"];
+
+          //  theEventDetails = eList;
+          //  savedEvents = [NSString stringWithFormat:@"%@\n%@\n\n", eventDescription, eventDateFormatted];
+          //  theEventDetails = [theEventDetails stringByAppendingString:savedEvents];
+ 
+
+            theEventDetails = [NSString stringWithFormat:@"%@\n%@\n\n", eventDescription, eventDateFormatted];
         
-        theEventDetails = [NSString stringWithFormat:@"%@\n%@\n\n", eventDescription, eventDateFormatted];
+
+        
         
         [delegate sendDetails:theEventDetails];
         //NSLog(@"%@", theEventDetails);

@@ -21,6 +21,12 @@
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSUserDomainMask, YES);
     NSString *path = (NSString *)[paths objectAtIndex:0];
     NSLog(@"%@",path);
+    NSUserDefaults *eventDetailList = [NSUserDefaults standardUserDefaults];
+    NSString *eList = [eventDetailList objectForKey:@"eld"];
+    if (eList != nil)
+    {
+        eventList.text = eList;
+    }
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -36,12 +42,7 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
-        NSUserDefaults *evenDetailList = [NSUserDefaults standardUserDefaults];
-        NSString *eList = [evenDetailList objectForKey:@"eld"];
-        if (eList != nil)
-            {
-                eventList.text = eList;
-            }
+
     [super viewDidAppear:animated];
 }
 
@@ -66,7 +67,7 @@
         
         
     }
-    NSLog(@"hit the Save Button, Not doing anything yet.");
+    NSLog(@"Hit the Save Button");
 }
 
 -(void)addEvent:(UISwipeGestureRecognizer*)recognizer
@@ -87,16 +88,21 @@
 
 -(void)sendDetails:(NSString*)theEventDetails
 {
-    if (currentEvent != nil)
+    //Check for Existing List using NSUserDefaults and then append.
+    NSUserDefaults *eventDetailList = [NSUserDefaults standardUserDefaults];
+    NSString *eList = [eventDetailList objectForKey:@"eld"];
+    
+    if (eList != nil)
     {
-        currentEvent = [currentEvent stringByAppendingString:theEventDetails];
+        
+        eList = [eList stringByAppendingString:theEventDetails];
     }
     else
     {
-        currentEvent = [NSString stringWithFormat:@"%@" , theEventDetails];
+        eList = [NSString stringWithFormat:@"%@" , theEventDetails];
     }
 
-    eventList.text = currentEvent;
+    eventList.text = eList;
 
 }
 
