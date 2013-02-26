@@ -31,11 +31,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    //get current date -set the min date on the datepicker - set the text color to gray.
     NSDate *Date = [NSDate date];
     selectedDate.minimumDate = Date;
+    eventName.textColor = [UIColor grayColor];
 }
 -(void)viewWillAppear:(BOOL)animated
 {
+    //setup the gesture recognizer
     leftSwipeClose = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:@selector(onSwipeLeft:)];
     leftSwipeClose.direction = UISwipeGestureRecognizerDirectionLeft;
     [swipeLeftClose addGestureRecognizer:leftSwipeClose];
@@ -48,13 +51,15 @@
     // Dispose of any resources that can be recreated.
 }
 
-//clear the event text field when tapped
+//clear the event text field when tapped switch color to black
 -(IBAction)clearText:(id)sender
 {
     eventName.text = nil;
+    eventName.textColor = [UIColor blackColor];
+
 }
 
-//close teh keyboard
+//close the keyboard
 -(IBAction)closeTheKeyboard:(id)sender
 {
     [eventName resignFirstResponder];
@@ -65,33 +70,25 @@
 {
     if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft)
     {
-    
+        // grab the values
         eventDate = selectedDate.date;
         eventDescription = eventName.text;
         
+       // format the date
         NSDateFormatter * eventDateFormat = [[NSDateFormatter alloc] init];
         if (eventDateFormat != nil)
         {
             [eventDateFormat setDateFormat:@"EEE, MMM d, yyyy @ hh:mm a"];
             eventDateFormatted = [eventDateFormat stringFromDate:eventDate];
-           // NSLog(@"%@", eventDateFormatted);
         }
-        //NSUserDefaults *eventDetailList = [NSUserDefaults standardUserDefaults];
-        //NSString *eList = [eventDetailList objectForKey:@"eld"];
 
-          //  theEventDetails = eList;
-          //  savedEvents = [NSString stringWithFormat:@"%@\n%@\n\n", eventDescription, eventDateFormatted];
-          //  theEventDetails = [theEventDetails stringByAppendingString:savedEvents];
- 
-
-            theEventDetails = [NSString stringWithFormat:@"%@\n%@\n\n", eventDescription, eventDateFormatted];
+        //set the string to pass back
+        theEventDetails = [NSString stringWithFormat:@"%@\n%@\n\n", eventDescription, eventDateFormatted];
         
-
-        
-        
+        //pass the string to the delegatte function
         [delegate sendDetails:theEventDetails];
-        //NSLog(@"%@", theEventDetails);
         
+        //dismiss the view
         [self dismissViewControllerAnimated:YES completion:nil];
     
     }

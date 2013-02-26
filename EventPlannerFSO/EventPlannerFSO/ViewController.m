@@ -18,9 +18,12 @@
 
 - (void)viewDidLoad
 {
+    // this is just practice for folder stuff leaving it in for now.
     NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationDirectory, NSUserDomainMask, YES);
     NSString *path = (NSString *)[paths objectAtIndex:0];
     NSLog(@"%@",path);
+    
+    // grab whats in defaults and displays it if there is anything.
     NSUserDefaults *eventDetailList = [NSUserDefaults standardUserDefaults];
     NSString *eList = [eventDetailList objectForKey:@"eld"];
     if (eList != nil)
@@ -72,6 +75,7 @@
 
 -(void)addEvent:(UISwipeGestureRecognizer*)recognizer
 {
+    
     if (recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
         
     
@@ -103,7 +107,7 @@
     }
 
     eventList.text = eList;
-
+    
 }
 
 @end
