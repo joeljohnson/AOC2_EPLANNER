@@ -75,6 +75,23 @@
     NSLog(@"Hit the Save Button");
 }
 
+- (IBAction)clearEvents:(id)sender
+{
+
+    
+    NSString *emptyString = [NSString stringWithFormat:@""];
+    eventList.text = emptyString;
+    NSUserDefaults *eventDetailList = [NSUserDefaults standardUserDefaults];
+    if (eventDetailList != nil) {
+        [eventDetailList setObject:emptyString forKey:@"eld"];
+        [eventDetailList synchronize];
+
+    }
+    
+}
+
+
+
 -(void)addEvent:(UISwipeGestureRecognizer*)recognizer
 {
     
@@ -111,5 +128,7 @@
     eventList.text = eList;
     
 }
+
+
 
 @end

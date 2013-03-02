@@ -19,6 +19,7 @@
 }
 
 
--(IBAction)saveEvents:(id)sender;
+- (IBAction)saveEvents:(id)sender;
+- (IBAction)clearEvents:(id)sender;
 
 @end

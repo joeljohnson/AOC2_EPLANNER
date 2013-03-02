@@ -69,29 +69,35 @@
 -(void)onSwipeLeft:(UISwipeGestureRecognizer*)recognizer
 {
     if (recognizer.direction == UISwipeGestureRecognizerDirectionLeft)
-    {
-        // grab the values
-        eventDate = selectedDate.date;
-        eventDescription = eventName.text;
-        
-       // format the date
-        NSDateFormatter * eventDateFormat = [[NSDateFormatter alloc] init];
-        if (eventDateFormat != nil)
-        {
-            [eventDateFormat setDateFormat:@"EEE, MMM d, yyyy @ hh:mm a"];
-            eventDateFormatted = [eventDateFormat stringFromDate:eventDate];
-        }
-
-        //set the string to pass back
-        theEventDetails = [NSString stringWithFormat:@"%@\n%@\n\n", eventDescription, eventDateFormatted];
-        
-        //pass the string to the delegate function
-        [delegate sendDetails:theEventDetails];
-        
-        //dismiss the view
-        [self dismissViewControllerAnimated:YES completion:nil];
-    
-    }
+            
+       if ([eventName.text isEqualToString:@""])
+            {
+                UIAlertView *emptyTF = [[UIAlertView alloc] initWithTitle:@"Empty" message:@"Please Enter an Event Title" delegate:nil cancelButtonTitle:@"Ok!" otherButtonTitles:nil, nil];
+                [emptyTF show];
+            
+            }
+    else    {
+                // grab the values
+               eventDate = selectedDate.date;
+               eventDescription = eventName.text;
+               
+               // format the date
+               NSDateFormatter * eventDateFormat = [[NSDateFormatter alloc] init];
+               if (eventDateFormat != nil)
+               {
+                   [eventDateFormat setDateFormat:@"EEE, MMM d, yyyy @ hh:mm a"];
+                   eventDateFormatted = [eventDateFormat stringFromDate:eventDate];
+               }
+               
+               //set the string to pass back
+               theEventDetails = [NSString stringWithFormat:@"%@\n%@\n\n", eventDescription, eventDateFormatted];
+               
+               //pass the string to the delegate function
+               [delegate sendDetails:theEventDetails];
+               
+               //dismiss the view
+               [self dismissViewControllerAnimated:YES completion:nil];
+            }
 }
 
 @end
